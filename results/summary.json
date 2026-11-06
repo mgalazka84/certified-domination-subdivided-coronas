@@ -1,0 +1,28 @@
+{
+  "status": "all passed",
+  "seed": 20261106,
+  "graph_counts": {
+    "1": 1,
+    "2": 2,
+    "3": 4,
+    "4": 11,
+    "5": 34,
+    "6": 156
+  },
+  "case_counts": {
+    "all_graphs_one_leaf": 208,
+    "nonuniform_leaf_counts": 1020,
+    "seeded_larger_cases": 60
+  },
+  "total_cases": 1288,
+  "milp_solves": 2576,
+  "bipartite_cases": 764,
+  "direct_all_optima_cases": 60,
+  "enumeration_formula_checks": 34,
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "elapsed_seconds": 10.123
+}

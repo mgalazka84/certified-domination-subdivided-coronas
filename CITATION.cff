@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Please cite this software and its exact Git commit when using these computational checks."
+type: software
+title: "Verification code for Minimum certified dominating sets in subdivided coronas"
+authors:
+  - family-names: "Gałązka"
+    given-names: "Marek"
+  - family-names: "Wdowicka"
+    given-names: "Hanna"
+version: "1.0.0"
+date-released: "2026-11-06"
+repository-code: "https://github.com/mgalazka84/certified-domination-subdivided-coronas"
+abstract: "Full-graph integer optimization, direct subset enumeration, and flow certificates for certified domination in subdivided coronas, with recorded computational results."
+keywords:
+  - certified domination
+  - subdivided coronas
+  - graph algorithms
+  - reproducibility
