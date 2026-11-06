@@ -15,6 +15,7 @@ from pathlib import Path
 import numpy as np
 import scipy
 from scipy.optimize import Bounds, LinearConstraint, milp
+from scipy.optimize._highspy import _core as highs_core
 from scipy.sparse import lil_matrix
 
 
@@ -330,7 +331,9 @@ def main():
                'direct_all_optima_cases':sum(x['all_optima_directly_checked'] for x in results),
                'enumeration_formula_checks':len(enumeration_checks),
                'versions':{'python':platform.python_version(),'numpy':np.__version__,
-                           'scipy':scipy.__version__},
+                           'scipy':scipy.__version__,
+                           'highs':'.'.join(str(getattr(highs_core, 'HIGHS_VERSION_'+p))
+                                            for p in ('MAJOR','MINOR','PATCH'))},
                'elapsed_seconds':round(time.time()-started,3)}
     destination = Path(__file__).resolve().parent/'results'
     destination.mkdir(exist_ok=True)

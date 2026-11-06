@@ -10,10 +10,11 @@ in the manuscript are independent of these finite computational checks.
 ```bash
 python -m pip install -r requirements.txt
 python verify.py
+python verify_revision.py
 ```
 
 Run without Python's -O flag: assertions are part of the verification.
-The script overwrites `results/` next to itself. Keep a copy of the recorded outputs if comparing runs. No network access is used by the
+The scripts overwrite their own output files in `results/` next to themselves. Keep a copy of the recorded outputs if comparing runs. No network access is used by the
 verification itself. The dependency-installation step may require a network.
 
 ## Recorded environment
@@ -22,6 +23,7 @@ verification itself. The dependency-installation step may require a network.
 Python 3.12.14
 NumPy 2.3.5
 SciPy 1.17.0
+HiGHS 1.8.0 (bundled with SciPy)
 random seed 20261106
 ```
 
@@ -83,16 +85,47 @@ unlabelled base representative. Some assignments are equivalent under vertex
 renaming. The 34 additional enumeration checks evaluate the base-subset
 formula, rather than solving an independent full-graph model at these sizes.
 
+## Additional checks in version 1.1.0
+
+`verify_revision.py` records 251 further checks in `results/revision_checks.json`:
+
+- 23 base graphs of minimum degree at least three, among all representatives
+  on 1 to 6 vertices, with r_v = degree(v)-2. The identity involving the maximum
+  independent-set size is checked against an independent full-graph integer
+  model and exhaustive base subsets. Three of these bases are cubic.
+- 13 bipartite source graphs Q on 1 to 4 vertices, one representative up to
+  renaming. Add two base leaves to every vertex of Q; give original vertices
+  r_v = degree_Q(v)+1 and the new leaves r_v = 1. Exhaustive base subsets verify
+  the count-preserving correspondence with all independent sets of Q. The
+  independent full-graph model verifies the optimum value in each case.
+  Full-graph subset enumeration is additionally performed for the one-vertex Q.
+- 42 forests on 1 to 6 vertices, r_v = 1. An exhaustive degree-bounded edge
+  search computes the path-cover number, compared with the full-graph model.
+- 159 minimum-cut listings: every bipartite representative on 1 to 4 vertices
+  with each assignment r_v in {1,2}, and all representatives on 5 vertices with
+  r_v = 1. A recursive implementation uses constrained maximum flows to list
+  every optimum; its complete output is compared with exhaustive base subsets,
+  and each resulting certified dominating set is checked directly.
+- 13 star bases with 1 to 13 base leaves, r_v = 1, checked by base subsets.
+- The one-vertex path, r_v = 1, checked by full-graph subset enumeration.
+
+These add 78 full-graph integer-model solves. The count checks on the 13
+constructions are base-subset enumerations, not exhaustive full-graph searches
+(except for the explicitly identified one-vertex source). They supplement the
+proofs and do not establish any complexity-class claim by computation.
+
 ## Files
 
 ```text
-verify.py                  complete verification program
+verify.py                  original verification program
+verify_revision.py         additional reductions, forests and listing checks
 requirements.txt           pinned numerical-library versions
 results/summary.json       totals, environment, seed, elapsed time
 results/cases.json         inputs, optimum values, minimizing base subsets,
                           and bounded-edge certificates for all test cases
 results/cases.csv          compact tabular summary
 results/enumeration.json   family counts and optimum values
+results/revision_checks.json  all additional inputs, counts and outputs
 ```
 
 ## Conventions
