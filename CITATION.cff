@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "Please cite this software and its exact Git commit when using these computational checks."
 type: software
-title: "Verification code for Minimum certified dominating sets in subdivided coronas"
+title: "Verification code for Minimum certified dominating sets in subdivided corona graphs"
 authors:
   - family-names: "Gałązka"
     given-names: "Marek"

@@ -1,4 +1,4 @@
-# Minimum certified dominating sets in subdivided coronas
+# Minimum certified dominating sets in subdivided corona graphs
 
 Verification code and recorded computational results by **Marek Gałązka and Hanna Wdowicka**.
 
@@ -108,7 +108,7 @@ presented as a proof of a universal mathematical statement.
 
 Please cite this software by its exact Git commit when using the recorded checks.
 Machine-readable citation metadata are provided in `CITATION.cff`.
-The associated manuscript is **Minimum certified dominating sets in subdivided coronas**,
+The associated manuscript is **Minimum certified dominating sets in subdivided corona graphs**,
 by Marek Gałązka and Hanna Wdowicka (2026). No publication DOI has been assigned.
 
 The repository contains code, computational results, and reproduction instructions.
